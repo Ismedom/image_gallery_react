@@ -11,7 +11,7 @@ html {
 }
 
 .container1 {
-  columns: 4 330px;
+  columns: 4 280px;
 }
 div.active {
   display: block;
@@ -45,7 +45,21 @@ button[disabled]:hover {
 .dot:nth-child(3) {
   animation-delay: 0.3s;
 }
+.sounded {
+  animation: effective 0.5s infinite alternate;
+  transition: all 0.5s;
+}
 
+@keyframes effective {
+  from {
+    background-color: #dad8d880;
+    background-size: 0%;
+  }
+  to {
+    background-color: #dad8d8;
+    background-size: 100%;
+  }
+}
 @keyframes wave {
   from {
     opacity: 0;

@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClose,
-  faDownload,
-  faLeaf,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClose, faDownload, faUser } from "@fortawesome/free-solid-svg-icons";
 import pic from "../../assets/select.png";
 import Loading1 from "./Loading1";
 const className1 =
@@ -23,9 +18,9 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
     setDisplayData(newData);
   }, [active]);
 
-  useEffect(() => {
-    console.log(imgLoaded);
-  }, [imgLoaded]);
+  // useEffect(() => {
+  //   console.log(imgLoaded);
+  // }, [imgLoaded]);
 
   return (
     <div className={active + " " + className1}>
@@ -91,6 +86,7 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
                     <span className="font-bold text-xl">
                       Hightest Resolution :{" "}
                     </span>
+                    {item.width + " x " + item.height} {": "}
                     {parseInt(item.width) * parseInt(item.height)}px
                   </p>
                 </>

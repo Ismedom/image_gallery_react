@@ -31,7 +31,7 @@ const App = () => {
     setIsAllow(true);
     setApi(api2);
   }
-  const api2 = `https://api.pexels.com/v1/search?query=${searchValue}&page=${pages}&per_page=${currentPages}`;
+  const api2 = `https://api.pexels.com/v1/search?query=${searchValue.toLocaleLowerCase()}&page=${pages}&per_page=${currentPages}`;
   const api1 = `https://api.pexels.com/v1/curated?page=${pages}&per_page=${currentPages}`;
 
   const [api, setApi] = useState(

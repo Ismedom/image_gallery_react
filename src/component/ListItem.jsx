@@ -14,7 +14,7 @@ const ListItem = ({
 }) => {
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(false);
-  const [urlItem, setUrlItem] = useState("");
+  // const [urlItem, setUrlItem] = useState("");
   const key = "FVFzMMNPCg7dTdsg067Dhnoob0k7DBQp7BDoaDX9wEwz4Wg1RMafdYD7";
 
   if (!navigator.onLine) {
@@ -39,10 +39,11 @@ const ListItem = ({
   function handle(e) {
     setActive("active");
     setId(e.currentTarget.id);
-    const newUrl = data.filter((item) => {
-      return item.id == e.currentTarget.id;
-    });
-    setUrlItem(newUrl);
+
+    // const newUrl = data.filter((item) => {
+    //   return item.id == e.currentTarget.id;
+    // });
+    // setUrlItem(newUrl);
   }
 
   if (!IsLoading) {
