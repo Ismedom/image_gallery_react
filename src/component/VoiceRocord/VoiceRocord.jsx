@@ -53,6 +53,17 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
   function handleClose() {
     recognition.stop();
   }
+
+  useEffect(() => {
+    const shortcutToOpenVoice = (e) => {
+      if (e.altKey && e.keyCode === 82) {
+        handleClick();
+      }
+    };
+    window.addEventListener("keydown", shortcutToOpenVoice);
+    return () => window.removeEventListener("keydown", shortcutToOpenVoice);
+  }, []);
+
   recognition.onresult = function (event) {
     const transcript = event.results[event.results.length - 1][0].transcript;
 
@@ -65,6 +76,12 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
       setResult(transcript);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      recognition.onresult = null; // Remove the event listener
+    };
+  }, []);
 
   return (
     <div>
