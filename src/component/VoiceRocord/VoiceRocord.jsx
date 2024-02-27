@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import PopUpVoice from "./PopUpVoice";
@@ -9,6 +9,7 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
   const [sound, setSound] = useState(false);
   const [time, setTime] = useState(0);
   const [isTimeout, setIsTimeout] = useState(false);
+  const microphone = useRef(null);
   const recognitionCheck =
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -17,6 +18,7 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
       setIsTimeout(true);
     }, 2500);
   }, []);
+  if (!navigator.onLine) return;
   if (!recognitionCheck)
     return (
       <div
@@ -86,11 +88,13 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
   return (
     <div>
       <FontAwesomeIcon
+        ref={microphone}
         icon={faMicrophone}
         onClick={() => {
           handleClick();
         }}
-        className="px-3 py-2 hover:bg-green-400 hover:text-white mr-2 rounded-full cursor-pointer select-none text-gray-600"
+        title="Voice to search! (alt + r)"
+        className="px-3 py-2 hover:bg-green-400 hover:text-white  rounded-full cursor-pointer select-none text-gray-600"
       />
       <div
         className={`fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center ${

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Item from "./list item/Item";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
+import NoInternet from "./list item/NoInternet";
 
 const ListItem = ({
   currentPages,
@@ -14,11 +15,10 @@ const ListItem = ({
 }) => {
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(false);
-  // const [urlItem, setUrlItem] = useState("");
   const key = "FVFzMMNPCg7dTdsg067Dhnoob0k7DBQp7BDoaDX9wEwz4Wg1RMafdYD7";
 
   if (!navigator.onLine) {
-    return <h3>No Internet connection!</h3>;
+    return <NoInternet />;
   }
   useEffect(() => {
     if (searchValue == "" && IsAllow) return;

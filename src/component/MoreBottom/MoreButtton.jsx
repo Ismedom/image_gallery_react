@@ -8,11 +8,11 @@ const MoreButtton = ({ func, dataApi }) => {
       : (buttonRef.current.disabled = false);
   }, [dataApi]);
   return (
-    <div className="w-full flex justify-center p-4 mb-10 mt-4">
+    <div className="w-full flex justify-center p-4 mb-10 mt-4 ">
       <button
         ref={buttonRef}
         onClick={() => func()}
-        className="px-4 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-600">
+        className="px-4 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 select-none">
         See More
       </button>
     </div>
