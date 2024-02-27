@@ -39,11 +39,6 @@ const ListItem = ({
   function handle(e) {
     setActive("active");
     setId(e.currentTarget.id);
-
-    // const newUrl = data.filter((item) => {
-    //   return item.id == e.currentTarget.id;
-    // });
-    // setUrlItem(newUrl);
   }
 
   if (!IsLoading) {

@@ -5,7 +5,7 @@ import { faHeart, faSave, faUser } from "@fortawesome/free-solid-svg-icons";
 const Item = ({ imgSrc, artistName, url, id }) => {
   return (
     <article
-      className="max-w-[400px] relative select-none overflow-hidden group"
+      className="max-w-[400px] relative select-none overflow-hidden group item"
       id={id}>
       <img
         src={imgSrc}

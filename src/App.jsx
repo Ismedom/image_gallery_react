@@ -5,7 +5,7 @@ import MoreButtton from "./component/MoreBottom/MoreButtton";
 import Details from "./component/detail/Details";
 
 const App = () => {
-  const [currentPages, setCurrentPages] = useState(15);
+  const [currentPages, setCurrentPages] = useState(20);
   const [pages, setPages] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const [IsAllow, setIsAllow] = useState(false);

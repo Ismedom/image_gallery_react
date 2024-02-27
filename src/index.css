@@ -11,8 +11,9 @@ html {
 }
 
 .container1 {
-  columns: 4 280px;
+  columns: 4 200px;
 }
+
 div.active {
   display: block;
 }
