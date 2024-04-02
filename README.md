@@ -1,8 +1,11 @@
 # React + Vite
 
-//to install node modules
+//to install node modules 
+
 npm install 
+
 // to run project
+
 npm run dev
 
 
