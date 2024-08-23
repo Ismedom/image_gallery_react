@@ -10,8 +10,7 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
   const [time, setTime] = useState(0);
   const [isTimeout, setIsTimeout] = useState(false);
   const microphone = useRef(null);
-  const recognitionCheck =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognitionCheck = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,7 +24,7 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
         className={`absolute top-[75px] left-[50%] -translate-x-1/2 w-full text-center bg-white pb-2 ${
           isTimeout ? "hidden" : ""
         }`}>
-        Your browser not support voice record!
+        Your browser not text to speech!
       </div>
     );
   const recognition = new recognitionCheck();
@@ -81,7 +80,7 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
 
   useEffect(() => {
     return () => {
-      recognition.onresult = null; // Remove the event listener
+      recognition.onresult = null;
     };
   }, []);
 
@@ -97,18 +96,9 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
         className="px-3 py-2 hover:bg-green-400 hover:text-white  rounded-full cursor-pointer select-none text-gray-600"
       />
       <div
-        className={`fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center ${
-          activePop ? "" : "hidden"
-        }`}
+        className={`fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center ${activePop ? "" : "hidden"}`}
         style={{ background: "rgb(0,0,0,.5)" }}>
-        <PopUpVoice
-          handleClose={handleClose}
-          setActivePop={setActivePop}
-          result={result}
-          searchFu={searchFu}
-          sound={sound}
-          time={time}
-        />
+        <PopUpVoice {...{ handleClose, setActivePop, result, searchFu, sound, time }} />
       </div>
     </div>
   );

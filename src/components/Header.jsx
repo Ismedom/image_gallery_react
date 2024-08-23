@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import VoiceRocord from "./VoiceRocord/VoiceRocord";
+import VoiceRocord from "./tts/VoiceRocord";
 
 const Header = ({ searchValue, setSearchValue, change }) => {
   const searchButtonRef = useRef(null);
@@ -29,8 +29,7 @@ const Header = ({ searchValue, setSearchValue, change }) => {
 
   useEffect(() => {
     const shortCutToDelete = (e) => {
-      if ((e.ctrlKey && e.keyCode === 89) || (e.altKey && e.keyCode === 81))
-        setSearchValue("");
+      if ((e.ctrlKey && e.keyCode === 89) || (e.altKey && e.keyCode === 81)) setSearchValue("");
     };
     window.addEventListener("keydown", shortCutToDelete);
     return () => window.removeEventListener("keydown", shortCutToDelete);
@@ -39,7 +38,7 @@ const Header = ({ searchValue, setSearchValue, change }) => {
   return (
     <header className="flex gap-2 m-4  flex-wrap">
       <div className="flex gap-1 items-center rounded-3xl overflow-hidden bg-blue-50  border border-gray-300 hover:outline outline-blue-400 md:w-[400px] px-2">
-        <VoiceRocord setSearchValue={setSearchValue} searchFu={searchFu} />
+        <VoiceRocord {...{ setSearchValue, searchFu }} />
         <input
           ref={inputButton}
           value={searchValue}
