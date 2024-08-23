@@ -26,7 +26,7 @@ const useFetchImage = ({ currentPages, api, searchValue, IsAllow, setDataApi, se
     };
 
     fetchData();
-  }, [currentPages, api, searchValue, IsAllow, setDataApi]);
+  }, [currentPages, api, IsAllow, setDataApi]);
 
   return;
 };

@@ -17,10 +17,6 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
     setDisplayData(newData);
   }, [active]);
 
-  // useEffect(() => {
-  //   console.log(imgLoaded);
-  // }, [imgLoaded]);
-
   return (
     <div className={active + " " + className1}>
       {displayData.map((item) => (

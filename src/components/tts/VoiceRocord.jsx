@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import PopUpVoice from "./PopUpVoice";
 
-const VoiceRocord = ({ setSearchValue, searchFu }) => {
+const VoiceRocord = ({ searchValue, setSearchValue, searchFu }) => {
   const [activePop, setActivePop] = useState(false);
   const [result, setResult] = useState("");
   const [sound, setSound] = useState(false);
@@ -13,10 +13,26 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
   const recognitionCheck = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutFuc = setTimeout(() => {
       setIsTimeout(true);
     }, 2500);
+    return () => clearTimeout(timeoutFuc);
   }, []);
+
+  useEffect(() => {
+    if (activePop && searchValue == "") {
+      const timeout = setTimeout(() => {
+        handleClose();
+        setActivePop(false);
+      }, 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [activePop, searchValue]);
+
+  // function autoCloseTTS(handler) {
+  //   if (searchValue === "") handler();
+  // }
+  //
   if (!navigator.onLine) return;
   if (!recognitionCheck)
     return (
@@ -27,33 +43,17 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
         Your browser not text to speech!
       </div>
     );
+  //
   const recognition = new recognitionCheck();
   recognition.lang = "en-US";
 
   recognition.continuous = false;
-
   recognition.interimResults = true;
 
   recognition.onsoundend = (e) => {
     setSound(true);
     setTime(e.timeStamp);
   };
-  recognition.onspeechend = () => {
-    console.log("speech end");
-  };
-  recognition.onerror = (e) => {
-    console.log(e);
-  };
-
-  function handleClick() {
-    setSound(false);
-    setResult("");
-    setActivePop(true);
-    recognition.start();
-  }
-  function handleClose() {
-    recognition.stop();
-  }
 
   useEffect(() => {
     const shortcutToOpenVoice = (e) => {
@@ -83,6 +83,17 @@ const VoiceRocord = ({ setSearchValue, searchFu }) => {
       recognition.onresult = null;
     };
   }, []);
+
+  //
+  function handleClick() {
+    setSound(false);
+    setResult("");
+    setActivePop(true);
+    recognition.start();
+  }
+  function handleClose() {
+    recognition.stop();
+  }
 
   return (
     <div>

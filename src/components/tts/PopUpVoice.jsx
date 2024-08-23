@@ -2,19 +2,18 @@ import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 
-const PopUpVoice = ({
-  handleClose,
-  setActivePop,
-  result,
-  searchFu,
-  sound,
-  time,
-}) => {
+const PopUpVoice = ({ handleClose, setActivePop, result, searchFu, sound, time }) => {
   function closePopUp() {
     handleClose();
     setActivePop(false);
     searchFu();
   }
+
+  // useEffect(() => {
+  //   const timeout = setTimeout(autoCloseTTS(closePopUp), 5000);
+
+  //   return () => clearTimeout(timeout);
+  // }, []);
 
   useEffect(() => {
     window.addEventListener("keyup", (e) => {
@@ -33,10 +32,7 @@ const PopUpVoice = ({
 
   return (
     <div className="bg-white min-h-[300px] p-4 w-full max-h-max sm:w-2/3 md:w-1/2 lg:w-[40%] flex justify-center flex-col items-center rounded-md py-6 ">
-      <FontAwesomeIcon
-        icon={faMicrophone}
-        className={`p-4 rounded-full text-2xl ${sound ? "" : "sounded"}`}
-      />
+      <FontAwesomeIcon icon={faMicrophone} className={`p-4 rounded-full text-2xl ${sound ? "" : "sounded"}`} />
       <p className="py-2">{result}</p>
       <button
         onClick={() => closePopUp()}
