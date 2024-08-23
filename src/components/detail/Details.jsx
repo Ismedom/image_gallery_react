@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faDownload, faUser } from "@fortawesome/free-solid-svg-icons";
 import pic from "../../assets/select.png";
 import Loading1 from "./Loading1";
-const className1 =
-  "fixed top-0 bottom-0 right-0 left-0 bg-white p-8 z-50 transition-all overflow-auto";
+const className1 = "fixed top-0 bottom-0 right-0 left-0 bg-white p-8 z-50 transition-all overflow-auto";
 
 const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
   const [displayData, setDisplayData] = useState([]);
@@ -25,9 +24,7 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
   return (
     <div className={active + " " + className1}>
       {displayData.map((item) => (
-        <li
-          key={item.id}
-          className="list-none w-full flex flex-col mb-20 select-none">
+        <li key={item.id} className="list-none w-full flex flex-col mb-20 select-none">
           <div className="flex justify-end">
             <FontAwesomeIcon
               onClick={() => setActive("displayNone")}
@@ -69,23 +66,18 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
                 {item.alt == "" ? "No description" : item.alt}
               </p>
               <p className="text-xl">
-                <mark className="font-bold text-xl">Note:</mark> Original Image
-                is max size
+                <mark className="font-bold text-xl">Note:</mark> Original Image is max size
               </p>
               {
                 <>
                   <p className="text-xl">
-                    <span className="font-bold text-xl">Max width :</span>{" "}
-                    {item.width}
-                    px ,{" "}
-                    <span className="font-bold text-xl">Max height : </span>
+                    <span className="font-bold text-xl">Max width :</span> {item.width}
+                    px , <span className="font-bold text-xl">Max height : </span>
                     {item.height}px
                   </p>
 
                   <p className="text-xl">
-                    <span className="font-bold text-xl">
-                      Hightest Resolution :{" "}
-                    </span>
+                    <span className="font-bold text-xl">Hightest Resolution : </span>
                     {item.width + " x " + item.height} {": "}
                     {parseInt(item.width) * parseInt(item.height)}px
                   </p>
@@ -94,8 +86,8 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
             </div>
             <aside className="w-full border mt-6 p-4">
               <p>
-                To download the highest quality image, select 'Original' size,
-                wait for it to load completely, then click the download icon.
+                To download the highest quality image, select 'Original' size, wait for it to load completely, then
+                click the download icon.
               </p>
               <div className="max-w-[300px]">
                 <img src={pic} alt="select" className="w-full" />
@@ -106,18 +98,13 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
           <div className="fixed bottom-0 right-0 left-0 p-8 bg-white">
             <div className="flex justify-between items-center flex-wrap gap-4">
               <div className="flex gap-3 items-center">
-                <a
-                  href={item.photographer_url}
-                  target="_blank"
-                  className="rounded-full">
+                <a href={item.photographer_url} target="_blank" className="rounded-full">
                   <FontAwesomeIcon
                     icon={faUser}
                     className="text-xl w-6 h-6 bg-gray-300 p-3 rounded-full text-gray-600 hover:bg-gray-200"
                   />
                 </a>
-                <h3 className="text-xl font-bold select-text">
-                  {item.photographer}
-                </h3>
+                <h3 className="text-xl font-bold select-text">{item.photographer}</h3>
               </div>
 
               <div className="flex justify-center gap-4 items-center ">
