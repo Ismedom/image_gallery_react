@@ -1,3 +1,5 @@
+//
+
 export const getSrc = (item, size) => {
   const sizeMap = {
     landscape: item.src.landscape,

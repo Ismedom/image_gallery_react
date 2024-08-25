@@ -10,6 +10,7 @@ const VoiceRocord = ({ searchValue, setSearchValue, searchFu }) => {
   const [time, setTime] = useState(0);
   const [isTimeout, setIsTimeout] = useState(false);
   const microphone = useRef(null);
+  const overay = useRef(null);
   const recognitionCheck = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   useEffect(() => {
@@ -103,6 +104,13 @@ const VoiceRocord = ({ searchValue, setSearchValue, searchFu }) => {
         className="px-3 py-2 hover:bg-green-400 hover:text-white  rounded-full cursor-pointer select-none text-gray-600"
       />
       <div
+        ref={overay}
+        onClick={(e) => {
+          if (e.target === overay.current) {
+            setActivePop(false);
+            handleClose();
+          }
+        }}
         className={`fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center ${activePop ? "" : "hidden"}`}
         style={{ background: "rgb(0,0,0,.5)" }}>
         <PopUpVoice {...{ handleClose, setActivePop, result, searchFu, sound, time }} />

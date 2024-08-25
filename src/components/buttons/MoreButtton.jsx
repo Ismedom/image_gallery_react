@@ -3,9 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 const MoreButtton = ({ func, dataApi }) => {
   const buttonRef = useRef(null);
   useEffect(() => {
-    dataApi.length == 0
-      ? (buttonRef.current.disabled = true)
-      : (buttonRef.current.disabled = false);
+    dataApi.length == 0 ? (buttonRef.current.disabled = true) : (buttonRef.current.disabled = false);
   }, [dataApi]);
   return (
     <div className="w-full flex justify-center p-4 mb-10 mt-4 ">
