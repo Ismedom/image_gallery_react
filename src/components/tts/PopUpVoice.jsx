@@ -3,17 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 
 const PopUpVoice = ({ handleClose, setActivePop, result, searchFu, sound, time }) => {
+  //
   function closePopUp() {
     handleClose();
     setActivePop(false);
     searchFu();
   }
-
-  // useEffect(() => {
-  //   const timeout = setTimeout(autoCloseTTS(closePopUp), 5000);
-
-  //   return () => clearTimeout(timeout);
-  // }, []);
 
   useEffect(() => {
     window.addEventListener("keyup", (e) => {
@@ -24,9 +19,7 @@ const PopUpVoice = ({ handleClose, setActivePop, result, searchFu, sound, time }
 
   useEffect(() => {
     if (!time) return;
-    const timeOut = setTimeout(() => {
-      closePopUp();
-    }, 1200);
+    const timeOut = setTimeout(() => closePopUp(), 1200);
     return () => clearTimeout(timeOut);
   }, [time]);
 

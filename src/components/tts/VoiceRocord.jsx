@@ -15,7 +15,7 @@ const VoiceRocord = ({ searchValue, setSearchValue, searchFu }) => {
   useEffect(() => {
     const timeoutFuc = setTimeout(() => {
       setIsTimeout(true);
-    }, 2500);
+    }, 5000);
     return () => clearTimeout(timeoutFuc);
   }, []);
 
@@ -29,10 +29,6 @@ const VoiceRocord = ({ searchValue, setSearchValue, searchFu }) => {
     }
   }, [activePop, searchValue]);
 
-  // function autoCloseTTS(handler) {
-  //   if (searchValue === "") handler();
-  // }
-  //
   if (!navigator.onLine) return;
   if (!recognitionCheck)
     return (
