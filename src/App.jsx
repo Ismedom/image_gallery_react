@@ -29,9 +29,8 @@ const App = () => {
     !IsAllow ? setApi(api1) : setApi(api2);
   }, [api1]);
 
-  function addNumber() {
-    setCurrentPages((pre) => pre + 10);
-  }
+  const addNumber = () => setCurrentPages((pre) => pre + 10);
+
   return (
     <div className={active == "active" ? "overflow-hidden" : "w-full overflow-scroll h-screen"}>
       <div className="w-full fixed z-40 bg-white flex flex-wrap ">

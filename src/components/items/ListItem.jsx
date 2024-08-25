@@ -4,16 +4,13 @@ import Loading from "../../pages/Loading";
 import NotFound from "../../pages/NotFound";
 import NoInternet from "../../pages/NoInternet";
 import useFetchImage from "../../hook/useFetchImage";
+const key = import.meta.env.VITE_API_KEY;
 
 const ListItem = ({ currentPages, api, searchValue, IsAllow, setActive, setDataApi, setId }) => {
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(false);
-  // public apikey
-  const key = "FVFzMMNPCg7dTdsg067Dhnoob0k7DBQp7BDoaDX9wEwz4Wg1RMafdYD7";
 
-  if (!navigator.onLine) {
-    return <NoInternet />;
-  }
+  if (!navigator.onLine) return <NoInternet />;
 
   useFetchImage({
     currentPages,
@@ -37,7 +34,7 @@ const ListItem = ({ currentPages, api, searchValue, IsAllow, setActive, setDataA
 
   return (
     <div className={data.length === 0 ? "w-full" : "w-full container1 mx-auto "}>
-      {data.length === 0 ? (
+      {data.length === 0 && searchValue !== "" ? (
         <NotFound />
       ) : (
         data.map((item) => (
