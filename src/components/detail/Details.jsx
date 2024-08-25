@@ -3,8 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faDownload, faUser } from "@fortawesome/free-solid-svg-icons";
 import pic from "../../assets/select.png";
 import Loading1 from "./Loading1";
-const className1 =
-  "fixed top-0 bottom-0 right-0 left-0 bg-white p-8 z-50 transition-all overflow-auto";
+const className1 = "fixed top-0 bottom-0 right-0 left-0 bg-white p-8 z-50 transition-all overflow-auto";
+
+import { getSrc } from "../../functions/getSrc";
+import { imgSize } from "../../constant/imgSize";
+import { downloadOp } from "../../functions/downloadOp";
 
 const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
   const [displayData, setDisplayData] = useState([]);
@@ -12,22 +15,14 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
-    const newData = dataApi.filter((item) => {
-      return item.id == id;
-    });
+    const newData = dataApi.filter((item) => item.id == id);
     setDisplayData(newData);
   }, [active]);
-
-  // useEffect(() => {
-  //   console.log(imgLoaded);
-  // }, [imgLoaded]);
 
   return (
     <div className={active + " " + className1}>
       {displayData.map((item) => (
-        <li
-          key={item.id}
-          className="list-none w-full flex flex-col mb-20 select-none">
+        <li key={item.id} className="list-none w-full flex flex-col mb-20 select-none">
           <div className="flex justify-end">
             <FontAwesomeIcon
               onClick={() => setActive("displayNone")}
@@ -39,28 +34,10 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
             <article className="relative">
               {!imgLoaded ? <Loading1 /> : ""}
               <img
-                onLoad={() => {
-                  setImgLoaded(true);
-                }}
-                src={
-                  size === "landscape"
-                    ? item.src.landscape
-                    : size === "large2x"
-                    ? item.src.large2x
-                    : size === "large"
-                    ? item.src.large
-                    : size === "original"
-                    ? item.src.original
-                    : size === "portrait"
-                    ? item.src.portrait
-                    : size === "medium"
-                    ? item.src.medium
-                    : size === "tiny"
-                    ? item.src.tiny
-                    : item.src.small
-                }
-                alt={item.id}
-                className="min-w-[150px] transition-all duration-150"
+                src={getSrc(item, size)}
+                alt={`Image ${item.id}`}
+                onLoad={() => setImgLoaded(true)}
+                className={`${imgLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
               />
             </article>
             <div className="w-full flex flex-col gap-3">
@@ -69,23 +46,18 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
                 {item.alt == "" ? "No description" : item.alt}
               </p>
               <p className="text-xl">
-                <mark className="font-bold text-xl">Note:</mark> Original Image
-                is max size
+                <mark className="font-bold text-xl">Note:</mark> Original Image is max size
               </p>
               {
                 <>
                   <p className="text-xl">
-                    <span className="font-bold text-xl">Max width :</span>{" "}
-                    {item.width}
-                    px ,{" "}
-                    <span className="font-bold text-xl">Max height : </span>
+                    <span className="font-bold text-xl">Max width :</span> {item.width}
+                    px , <span className="font-bold text-xl">Max height : </span>
                     {item.height}px
                   </p>
 
                   <p className="text-xl">
-                    <span className="font-bold text-xl">
-                      Hightest Resolution :{" "}
-                    </span>
+                    <span className="font-bold text-xl">Hightest Resolution : </span>
                     {item.width + " x " + item.height} {": "}
                     {parseInt(item.width) * parseInt(item.height)}px
                   </p>
@@ -94,8 +66,8 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
             </div>
             <aside className="w-full border mt-6 p-4">
               <p>
-                To download the highest quality image, select 'Original' size,
-                wait for it to load completely, then click the download icon.
+                To download the highest quality image, select 'Original' size, wait for it to load completely, then
+                click the download icon.
               </p>
               <div className="max-w-[300px]">
                 <img src={pic} alt="select" className="w-full" />
@@ -106,18 +78,13 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
           <div className="fixed bottom-0 right-0 left-0 p-8 bg-white">
             <div className="flex justify-between items-center flex-wrap gap-4">
               <div className="flex gap-3 items-center">
-                <a
-                  href={item.photographer_url}
-                  target="_blank"
-                  className="rounded-full">
+                <a href={item.photographer_url} target="_blank" className="rounded-full">
                   <FontAwesomeIcon
                     icon={faUser}
                     className="text-xl w-6 h-6 bg-gray-300 p-3 rounded-full text-gray-600 hover:bg-gray-200"
                   />
                 </a>
-                <h3 className="text-xl font-bold select-text">
-                  {item.photographer}
-                </h3>
+                <h3 className="text-xl font-bold select-text">{item.photographer}</h3>
               </div>
 
               <div className="flex justify-center gap-4 items-center ">
@@ -128,33 +95,14 @@ const Details = ({ active, setActive, dataApi, id, downloadImage }) => {
                     setImgLoaded(false);
                   }}
                   className="border border-gray-400 py-2 pl-4 pr-2 text-lg cursor-pointer capitalize font-bold text-gray-600">
-                  <option value="landscape">landscape</option>
-                  <option value="original">original</option>
-                  <option value="large2x">large2x</option>
-                  <option value="large">large</option>
-                  <option value="portrait">portrait</option>
-                  <option value="medium">medium</option>
-                  <option value="tiny">tiny</option>
-                  <option value="small">small</option>
+                  {imgSize.map(({ src }) => (
+                    <option key={src} value={src.trim()}>
+                      {src}
+                    </option>
+                  ))}
                 </select>
                 <FontAwesomeIcon
-                  onClick={() =>
-                    size === "landscape"
-                      ? downloadImage(item.src.landscape, "download landscape")
-                      : size === "large2x"
-                      ? downloadImage(item.src.large2x, "download large2x")
-                      : size === "large"
-                      ? downloadImage(item.src.large, "download large")
-                      : size === "original"
-                      ? downloadImage(item.src.original, "download original")
-                      : size === "portrait"
-                      ? downloadImage(item.src.portrait, "download portrait")
-                      : size === "medium"
-                      ? downloadImage(item.src.medium, "download medium")
-                      : size === "tiny"
-                      ? downloadImage(item.src.tiny, "download tiny")
-                      : downloadImage(item.src.small, "download small")
-                  }
+                  onClick={() => downloadOp(downloadImage, item, size)}
                   icon={faDownload}
                   title="Download"
                   className="text-xl w-6 h-6 bg-gray-300 p-3 rounded-md text-gray-600 cursor-pointer hover:bg-gray-200 active:text-orange-400"
