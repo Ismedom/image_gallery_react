@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  width="64"
+  height="64"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round">
+  <!-- Background Frame -->
+  <rect x="2" y="2" width="60" height="60" rx="4" stroke="#2c3e50" fill="#ecf0f1" />
+
+  <!-- Image 1 -->
+  <rect x="12" y="18" width="30" height="20" rx="2" fill="#3498db" stroke="#2c3e50" />
+  <circle cx="24" cy="28" r="5" fill="#ecf0f1" stroke="#2c3e50" />
+  <line x1="12" y1="30" x2="42" y2="30" stroke="#2c3e50" />
+
+  <!-- Image 2 -->
+  <rect x="22" y="28" width="30" height="20" rx="2" fill="#e74c3c" stroke="#2c3e50" />
+  <circle cx="34" cy="38" r="5" fill="#ecf0f1" stroke="#2c3e50" />
+  <line x1="22" y1="40" x2="52" y2="40" stroke="#2c3e50" />
+
+  <!-- Image 3 -->
+  <rect x="32" y="38" width="30" height="20" rx="2" fill="#2ecc71" stroke="#2c3e50" />
+  <circle cx="44" cy="48" r="5" fill="#ecf0f1" stroke="#2c3e50" />
+  <line x1="32" y1="50" x2="62" y2="50" stroke="#2c3e50" />
+</svg>
